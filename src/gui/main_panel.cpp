@@ -376,7 +376,9 @@ MainPanel::init()
 	
 	_top_panel->SetSizer( topcolsizer );      // actually set the sizer
 	topcolsizer->Fit( _top_panel );            // set size to minimum size as calculated by the sizer
-	topcolsizer->SetSizeHints( _top_panel );   // set size hints to honour mininum size
+	printf("topcolsizer->minheight = %d\n\n", topcolsizer->GetSize().GetHeight());
+	this->SetMinSize( wxSize(850, topcolsizer->GetSize().GetHeight() + 120) );   // set size hints to honour mininum size
+	printf("main_panel->minsize = %dx%d\n\n", this->GetMinWidth(), this->GetMinHeight());
 
 	_topsizer->Add (_top_panel, 0, wxEXPAND);
 
@@ -401,15 +403,17 @@ MainPanel::init()
 	_scroller->EnableScrolling (true, true);
 
 	//_main_sizer->Fit( _scroller );            // set size to minimum size as calculated by the sizer
-	_main_sizer->SetSizeHints( _scroller );   // set size hints to honour mininum size
+//	_main_sizer->SetSizeHints( _scroller );   // set size hints to honour mininum size
 
 	
 	this->SetAutoLayout( true );     // tell dialog to use sizer
 	this->SetSizer( _topsizer );      // actually set the sizer
 	_topsizer->Fit( this );            // set size to minimum size as calculated by the sizer
-	_topsizer->SetSizeHints( this );   // set size hints to honour mininum size
+//	_topsizer->SetSizeHints( this );   // set size hints to honour mininum size
 
 	_scroller->SetFocus();
+	printf("main_panel->minsize = %dx%d\n\n", this->GetMinWidth(), this->GetMinHeight());
+	printf("main_panel->minclientsize = %dx%d\n\n", this->GetMinClientSize().GetWidth(), this->GetMinClientSize().GetHeight());
 }
 
 void

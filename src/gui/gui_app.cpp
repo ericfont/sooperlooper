@@ -341,8 +341,12 @@ bool GuiApp::OnInit()
 	// connect
 	//loopctrl.connect();
 
+//	wxSize minsize = _frame->get_main_panel()->GetMinSize();
+//    printf( "frame-main-panel-min-size = %dx%d\n\n", minsize.GetWidth(), minsize.GetHeight());
 	// Show it and tell the application that it's our main window
-	_frame->SetSizeHints(850, 210);
+//	_frame->SetMinClientSize(wxSize(850, minsize.GetHeight()));
+    printf( "_frame->GetMinClientSize = %dx%d\n\n", _frame->GetMinClientSize().GetWidth(), _frame->GetMinClientSize().GetHeight());
+    printf( "_frame->GetMinSize = %dx%d\n\n", _frame->GetMinSize().GetWidth(), _frame->GetMinSize().GetHeight());
 	_frame->SetSize(_screen_pos.x, _screen_pos.y, 860, 215);
 
 	SetTopWindow(_frame);
@@ -352,6 +356,8 @@ bool GuiApp::OnInit()
 	_frame->Show(TRUE);
 
 		
+    printf( "_frame->GetMinClientSize = %dx%d\n\n", _frame->GetMinClientSize().GetWidth(), _frame->GetMinClientSize().GetHeight());
+    printf( "_frame->GetMinSize = %dx%d\n\n", _frame->GetMinSize().GetWidth(), _frame->GetMinSize().GetHeight());
 	// success: wxApp::OnRun() will be called which will enter the main message
 	// loop and the application will run. If we returned FALSE here, the
 	// application would exit immediately.
