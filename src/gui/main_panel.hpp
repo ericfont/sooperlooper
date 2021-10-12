@@ -178,7 +178,7 @@ protected:
 	wxTimer * _taptempo_button_timer;
 
 	wxScrolledWindow * _scroller;
-	wxBoxSizer * _main_sizer;
+	wxBoxSizer * _scroller_sizer;
 	wxBoxSizer * _topsizer;
 	wxPanel    * _top_panel;
 

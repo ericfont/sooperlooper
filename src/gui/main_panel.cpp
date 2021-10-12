@@ -201,7 +201,7 @@ MainPanel::~MainPanel()
 void
 MainPanel::init()
 {
-	_main_sizer = new wxBoxSizer(wxVERTICAL);
+	_scroller_sizer = new wxBoxSizer(wxVERTICAL);
 	_topsizer = new wxBoxSizer(wxVERTICAL);
 
 	//wxBoxSizer * rowsizer = new wxBoxSizer(wxHORIZONTAL);
@@ -392,8 +392,8 @@ MainPanel::init()
 
 	_topsizer->Add (_scroller, 1, wxEXPAND);
 	
-	_scroller->SetSizer( _main_sizer );      // actually set the sizer
-	_scroller->SetMinClientSize( wxSize(850, 120)); // minimum scroller size should fit exactly one loop
+	_scroller->SetSizer( _scroller_sizer );      // actually set the sizer
+	_scroller->SetMinClientSize( wxSize(850, 120)); // scroller's minimum drawable area should fit exactly one loop
 
 	_scroller->SetScrollRate (0, 30);
 	_scroller->EnableScrolling (true, true);
@@ -439,7 +439,7 @@ MainPanel::init_loopers (int count)
 		while (count > (int) _looper_panels.size()) {
 			looperpan = new LooperPanel(this, _loop_control, _scroller, -1);
 			looperpan->set_index(_looper_panels.size());
-			_main_sizer->Add (looperpan, 0, wxEXPAND|wxALL, 0);
+			_scroller_sizer->Add (looperpan, 0, wxEXPAND|wxALL, 0);
 			_looper_panels.push_back (looperpan);
 		}
 	}
@@ -447,7 +447,7 @@ MainPanel::init_loopers (int count)
 		while (count < (int)_looper_panels.size()) {
 			looperpan = _looper_panels.back();
 			_looper_panels.pop_back();
-			_main_sizer->Remove((wxBoxSizer*)looperpan);
+			_scroller_sizer->Remove((wxBoxSizer*)looperpan);
 			looperpan->Destroy();
 		}
 	}
