@@ -252,25 +252,7 @@ AppFrame::init()
 
     _topsizer->Add (_mainpanel, 1, wxEXPAND);
     
-    printf( "mainpanel size = %dx%d\n\n", _mainpanel->GetSize().GetWidth(), _mainpanel->GetSize().GetHeight());
-
-    printf( "app_frame min size before = %dx%d\n\n", this->GetMinSize().GetWidth(), this->GetMinSize().GetHeight());
-    printf( "app_frame min client size before = %dx%d\n\n", this->GetMinClientSize().GetWidth(), this->GetMinClientSize().GetHeight());
     SetSizerAndFit(_topsizer);
-    printf( "app_frame min size after = %dx%d\n\n", this->GetMinSize().GetWidth(), this->GetMinSize().GetHeight());
-    printf( "app_frame min client size after = %dx%d\n\n", this->GetMinClientSize().GetWidth(), this->GetMinClientSize().GetHeight());
-    
-	/*
-	this->SetAutoLayout( true );     // tell dialog to use sizer
-    printf( "mainpanel size = %dx%d\n\n", _mainpanel->GetSize().GetWidth(), _mainpanel->GetSize().GetHeight());
-	this->SetSizer( _topsizer );      // actually set the sizer
-    printf( "mainpanel size = %dx%d\n\n", _mainpanel->GetSize().GetWidth(), _mainpanel->GetSize().GetHeight());
-	_topsizer->Fit( this );            // set size to minimum size as calculated by the sizer
-    printf( "mainpanel size = %dx%d\n\n", _mainpanel->GetSize().GetWidth(), _mainpanel->GetSize().GetHeight());
-    printf( "_topsizer->GetMinSize = %dx%d\n\n", _topsizer->GetMinSize().GetWidth(), _topsizer->GetMinSize().GetHeight());
-	this->SetMinClientSize( _topsizer->GetMinSize() );   // set size hints to honour mininum size*/
-    printf( "this->GetMinClientSize = %dx%d\n\n", this->GetMinClientSize().GetWidth(), this->GetMinClientSize().GetHeight());
-    printf( "this->GetMinSize = %dx%d\n\n", this->GetMinSize().GetWidth(), this->GetMinSize().GetHeight());
 }
 
 
