@@ -163,6 +163,9 @@ AppFrame::init()
 
 	
 	_mainpanel = new MainPanel(this, -1, wxDefaultPosition, wxDefaultSize);
+    printf( "mainpanel size = %dx%d\n\n", _mainpanel->GetSize().GetWidth(), _mainpanel->GetSize().GetHeight());
+    printf( "mainpanel minsize = %dx%d\n\n", _mainpanel->GetMinSize().GetWidth(), _mainpanel->GetMinSize().GetHeight());
+    printf( "mainpanel minclientsize = %dx%d\n\n", _mainpanel->GetMinClientSize().GetWidth(), _mainpanel->GetMinClientSize().GetHeight());
 
 	_mainpanel->PreferredSizeChange.connect (mem_fun (*this,  &AppFrame::on_preferred_size));
 
@@ -251,7 +254,13 @@ AppFrame::init()
     
     printf( "mainpanel size = %dx%d\n\n", _mainpanel->GetSize().GetWidth(), _mainpanel->GetSize().GetHeight());
 
-	
+    printf( "app_frame min size before = %dx%d\n\n", this->GetMinSize().GetWidth(), this->GetMinSize().GetHeight());
+    printf( "app_frame min client size before = %dx%d\n\n", this->GetMinClientSize().GetWidth(), this->GetMinClientSize().GetHeight());
+    SetSizerAndFit(_topsizer);
+    printf( "app_frame min size after = %dx%d\n\n", this->GetMinSize().GetWidth(), this->GetMinSize().GetHeight());
+    printf( "app_frame min client size after = %dx%d\n\n", this->GetMinClientSize().GetWidth(), this->GetMinClientSize().GetHeight());
+    
+	/*
 	this->SetAutoLayout( true );     // tell dialog to use sizer
     printf( "mainpanel size = %dx%d\n\n", _mainpanel->GetSize().GetWidth(), _mainpanel->GetSize().GetHeight());
 	this->SetSizer( _topsizer );      // actually set the sizer
@@ -259,7 +268,7 @@ AppFrame::init()
 	_topsizer->Fit( this );            // set size to minimum size as calculated by the sizer
     printf( "mainpanel size = %dx%d\n\n", _mainpanel->GetSize().GetWidth(), _mainpanel->GetSize().GetHeight());
     printf( "_topsizer->GetMinSize = %dx%d\n\n", _topsizer->GetMinSize().GetWidth(), _topsizer->GetMinSize().GetHeight());
-	this->SetMinClientSize( _topsizer->GetMinSize() );   // set size hints to honour mininum size
+	this->SetMinClientSize( _topsizer->GetMinSize() );   // set size hints to honour mininum size*/
     printf( "this->GetMinClientSize = %dx%d\n\n", this->GetMinClientSize().GetWidth(), this->GetMinClientSize().GetHeight());
     printf( "this->GetMinSize = %dx%d\n\n", this->GetMinSize().GetWidth(), this->GetMinSize().GetHeight());
 }

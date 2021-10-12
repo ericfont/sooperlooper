@@ -345,9 +345,10 @@ bool GuiApp::OnInit()
 //    printf( "frame-main-panel-min-size = %dx%d\n\n", minsize.GetWidth(), minsize.GetHeight());
 	// Show it and tell the application that it's our main window
 //	_frame->SetMinClientSize(wxSize(850, minsize.GetHeight()));
-    printf( "_frame->GetMinClientSize = %dx%d\n\n", _frame->GetMinClientSize().GetWidth(), _frame->GetMinClientSize().GetHeight());
-    printf( "_frame->GetMinSize = %dx%d\n\n", _frame->GetMinSize().GetWidth(), _frame->GetMinSize().GetHeight());
-	_frame->SetSize(_screen_pos.x, _screen_pos.y, 860, 215);
+//    printf( "_frame->GetMinClientSize = %dx%d\n\n", _frame->GetMinClientSize().GetWidth(), _frame->GetMinClientSize().GetHeight());
+ //   _frame->SetMinClientSize(_frame->get_main_panel()->GetMinClientSize());
+//    printf( "_frame->GetMinSize = %dx%d\n\n", _frame->GetMinSize().GetWidth(), _frame->GetMinSize().GetHeight());
+	_frame->SetSize(_screen_pos.x, _screen_pos.y, _frame->GetMinWidth(), _frame->GetMinHeight());
 
 	SetTopWindow(_frame);
 
