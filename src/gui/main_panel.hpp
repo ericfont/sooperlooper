@@ -105,7 +105,7 @@ public:
 
 	wxString do_file_selector(const wxString & message, const wxString & ext, const wxString & wc, int style);
 	
-	sigc::signal2<void,int, int> PreferredSizeChange;
+	sigc::signal<void> AppFrameFit;
 
     void set_sliders_allow_mousewheel (bool flag);
     bool get_sliders_allow_mousewheel () const { return _sliders_allow_mousewheel; }

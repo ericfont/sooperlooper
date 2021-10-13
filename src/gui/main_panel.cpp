@@ -379,7 +379,7 @@ MainPanel::init()
 	_topsizer->Add (_top_panel, 0, wxEXPAND);
 
 	
-	_scroller = new wxScrolledWindow(this, -1, wxDefaultPosition, wxDefaultSize, wxVSCROLL);
+	_scroller = new wxScrolledWindow(this, -1, wxDefaultPosition, wxSize(846, 118), wxVSCROLL); // initial size should fit one loop
 	_scroller->SetBackgroundColour(*wxBLACK);
 	
 
@@ -393,7 +393,6 @@ MainPanel::init()
 	_topsizer->Add (_scroller, 1, wxEXPAND);
 	
 	_scroller->SetSizer( _scroller_sizer );      // actually set the sizer
-	_scroller->SetMinClientSize( wxSize(850, 120)); // scroller's minimum drawable area should fit exactly one loop
 
 	_scroller->SetScrollRate (0, 30);
 	_scroller->EnableScrolling (true, true);
@@ -452,35 +451,24 @@ MainPanel::init_loopers (int count)
 		}
 	}
 
-	_scroller->SetClientSize(_scroller->GetClientSize());
 	_scroller->Layout();
-	_scroller->SetScrollRate(0,30);
+	_scroller->FitInside();
 
- 	if (!_looper_panels.empty()) {
- 		wxSize bestsz = _looper_panels[0]->GetBestSize();
-		//cerr << "best w: " << bestsz.GetWidth() << endl;
- 		_scroller->SetMinClientSize (bestsz);
-		_topsizer->Layout();
-// 		_topsizer->Fit(this);
-// 		_topsizer->SetSizeHints(this);
+	if (!_looper_panels.empty()) {
+		wxSize bestsz = _looper_panels[0]->GetBestSize();
+		//cerr << "bestsz: " << bestsz.GetWidth() << "x" << bestsz.GetHeight() << endl;
 
-		
+
 		// maybe resize
 		if (_looper_panels.size() <= 4) {
-			int topheight = _top_panel->GetSize().GetHeight();
-
-			//SetSize(GetSize().GetWidth(), bestsz.GetHeight() * _looper_panels.size()  + topheight); 
-			PreferredSizeChange(GetSize().GetWidth(), bestsz.GetHeight() * _looper_panels.size()  + topheight); // emit
+			// keep scroller's client width the same, but resize height to be just big enough to hold the updated number of looper panels
+			_scroller->SetMinSize( wxSize(_scroller->GetSize().GetWidth(), bestsz.GetHeight() * _looper_panels.size()) );
+			AppFrameFit(); // refit the top window while keeping in consideration the _scroller's updated MinClientSize constraint
+	//		Refresh();
+	//		Update();
 		}
-		
-		
  	}
-	
 
-	//_main_sizer->Layout();
-	//_main_sizer->Fit(_scroller);
-	//_main_sizer->SetSizeHints( _scroller );   // set size hints to honour mininum size
-	
 	// request all values for initial state
 	_loop_control->register_all_in_new_thread(_looper_panels.size());
 

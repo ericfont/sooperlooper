@@ -161,13 +161,9 @@ AppFrame::init()
 	
 	wxFont sliderFont = *wxSMALL_FONT;
 
-	
 	_mainpanel = new MainPanel(this, -1, wxDefaultPosition, wxDefaultSize);
-    printf( "mainpanel size = %dx%d\n\n", _mainpanel->GetSize().GetWidth(), _mainpanel->GetSize().GetHeight());
-    printf( "mainpanel minsize = %dx%d\n\n", _mainpanel->GetMinSize().GetWidth(), _mainpanel->GetMinSize().GetHeight());
-    printf( "mainpanel minclientsize = %dx%d\n\n", _mainpanel->GetMinClientSize().GetWidth(), _mainpanel->GetMinClientSize().GetHeight());
 
-	_mainpanel->PreferredSizeChange.connect (mem_fun (*this,  &AppFrame::on_preferred_size));
+	_mainpanel->AppFrameFit.connect (mem_fun (*this,  &AppFrame::Fit));
 
 	_mainpanel->set_force_local(_embedded);
 	
@@ -269,29 +265,6 @@ AppFrame::OnActivate(wxActivateEvent &ev)
 	ev.Skip();
 	
 }
-
-void
-AppFrame::on_preferred_size(int w, int h)
-{
-	int topheight = 0;
-#ifndef __WXMAC__
-	if (GetMenuBar()) {
-		topheight += GetMenuBar()->GetSize().GetHeight();
-	}
-#else
-	topheight += 32;
-
-    if (_embedded && _toolbar) {
-        topheight += _toolbar->GetSize().GetHeight();
-    }
-
-#endif
-
-	//if (!_embedded) {
-        SetSize (w, h + topheight);
-    //}
-}
-
 
 void
 AppFrame::OnClose(wxCloseEvent &event)
