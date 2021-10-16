@@ -450,6 +450,8 @@ MainPanel::init_loopers (int count)
 			looperpan->set_index(_looper_panels.size());
 			_main_sizer->Add (looperpan, 0, wxEXPAND|wxALL, 0);
 			_looper_panels.push_back (looperpan);
+
+			_loop_control->post_ctrl_change(_looper_panels.size() - 1, wxT("sync"), 1.0f);
 		}
 	}
 	else if (count < (int)_looper_panels.size()) {
