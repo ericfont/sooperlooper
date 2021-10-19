@@ -26,6 +26,7 @@ libslcore_a_SOURCES      = \
 	event.cpp \
 	midi_bridge.cpp \
 	midi_bind.cpp \
+	default_values.cpp \
 	audio_driver.cpp \
 	command_map.cpp \
 	filter.cpp \

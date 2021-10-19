@@ -53,6 +53,7 @@
 #include "pixmaps/tap_tempo_selected.xpm"
 
 #include <midi_bind.hpp>
+#include <default_values.hpp>
 
 #include <pbd/xml++.h>
 

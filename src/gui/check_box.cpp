@@ -33,8 +33,9 @@ using namespace std;
 
 enum {
 	ID_PopupBase  = 8000,
-	ID_BindMenuOp = 9000
-	
+	ID_BindMenuOp = 9000,
+	ID_LoadDefaultMenuOp = 1000,
+	ID_SaveDefaultMenuOp
 };
 
 BEGIN_EVENT_TABLE(CheckBox, wxWindow)
@@ -45,7 +46,9 @@ BEGIN_EVENT_TABLE(CheckBox, wxWindow)
 	EVT_MOUSEWHEEL (CheckBox::OnMouseEvents)
 	EVT_KILL_FOCUS (CheckBox::OnFocusEvent)
 
-	EVT_MENU (ID_BindMenuOp , CheckBox::on_menu_events)
+	EVT_MENU (ID_BindMenuOp, CheckBox::on_menu_events)
+	EVT_MENU (ID_LoadDefaultMenuOp, CheckBox::on_menu_events)
+	EVT_MENU (ID_SaveDefaultMenuOp, CheckBox::on_menu_events)
 	
 END_EVENT_TABLE()
 
@@ -80,14 +83,11 @@ CheckBox::CheckBox(wxWindow * parent, wxWindowID id, const wxString & label, boo
 
 	_valuebrush.SetColour(_valuecolor);
 
-	if (bindable) {
-		_popup_menu = new wxMenu(wxT(""));
-		_popup_menu->Append ( new wxMenuItem(_popup_menu, ID_BindMenuOp, wxT("Learn MIDI Binding")));
-	}
-	else {
-		_popup_menu = 0;
-	}
-
+	_popup_menu = new wxMenu(wxT(""));	
+	if (bindable)
+		_popup_menu->Append ( new wxMenuItem(_popup_menu, ID_BindMenuOp, wxT("Learn MIDI Binding for ") + label));
+	_popup_menu->Append ( new wxMenuItem(_popup_menu, ID_LoadDefaultMenuOp, wxT("Load Default for ") + label));
+	_popup_menu->Append ( new wxMenuItem(_popup_menu, ID_SaveDefaultMenuOp, wxT("Save Default for ") + label));
 	
 	int w,h;
 	GetTextExtent(_label_str, &w, &h);
@@ -272,6 +272,12 @@ void CheckBox::on_menu_events (wxCommandEvent &ev)
 {
 	if (ev.GetId() == ID_BindMenuOp) {
 		bind_request(); // emit
+	}
+	else if (ev.GetId() == ID_LoadDefaultMenuOp) {
+        cerr << "load";
+	}
+	else if (ev.GetId() == ID_SaveDefaultMenuOp) {
+        cerr << "save";
 	}
 }
 

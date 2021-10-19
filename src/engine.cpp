@@ -38,6 +38,7 @@
 #include "looper.hpp"
 #include "control_osc.hpp"
 #include "midi_bind.hpp"
+#include "default_values.hpp"
 #include "midi_bridge.hpp"
 #include "utils.hpp"
 

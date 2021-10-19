@@ -214,6 +214,16 @@ bool CommandMap::get_control_info(const std::string & ctrl, ControlInfo & info)
 	return false;
 }
 
+/*bool set_default_value( const std::string & ctrl, ControlInfo & info, float value)
+{
+	ControlInfoMap::iterator found = _ctrl_info_map.find(ctrl);
+	if (found != _ctrl_info_map.end()) {
+		info = found->second;
+		return true;
+	}
+	return false;
+}*/
+
 void CommandMap::add_input_control(const std::string & name, Event::control_t ctrl, 
 				   ControlUnit unit, float minVal, float maxVal, float defaultVal)
 {

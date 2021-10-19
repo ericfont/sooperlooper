@@ -31,6 +31,7 @@
 #include "event_nonrt.hpp"
 #include "audio_driver.hpp"
 #include "midi_bind.hpp"
+#include "default_values.hpp"
 #include "command_map.hpp"
 
 namespace SooperLooper {

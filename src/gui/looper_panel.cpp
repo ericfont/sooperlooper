@@ -39,6 +39,7 @@
 #include "pixmap_includes.hpp"
 
 #include <midi_bind.hpp>
+#include <default_values.hpp>
 
 using namespace SooperLooper;
 using namespace SooperLooperGui;
